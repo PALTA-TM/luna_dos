@@ -37,7 +37,7 @@ h2 {
     font-style: italic;
 }
 
-/* --- GRILLES PRINCIPALES --- */
+/* --- GRILLES PRINCIPALES (2 colonnes) --- */
 .section-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -45,14 +45,9 @@ h2 {
     align-items: center;
 }
 
-.section-full {
-    padding: 4rem 5%;
-    text-align: center;
-}
-
 /* --- CONTENEURS INTERNES --- */
 .text-container {
-    padding: 3rem;
+    padding: 4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -61,21 +56,22 @@ h2 {
 .image-container {
     width: 100%;
     height: 100%;
-    min-height: 300px;
+    min-height: 350px;
 }
 
 .image-container img {
     width: 100%;
     height: 100%;
-    max-height: 450px;
+    max-height: 500px;
     object-fit: cover;
 }
 
-/* --- CARROUSEL D'OBJETS --- */
-.carrousel-wrapper {
+/* --- CARROUSEL : Affichage une par une sur la colonne de droite --- */
+.carrousel-droite-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 2rem;
 }
 
 .galerie-container {
@@ -83,9 +79,9 @@ h2 {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    gap: 1.5rem;
-    padding: 1.5rem 0;
+    gap: 1rem;
     width: 100%;
+    max-width: 400px;
     scrollbar-width: none;
 }
 
@@ -94,25 +90,19 @@ h2 {
 }
 
 .carte-objet {
-    flex: 0 0 280px; /* Taille fixe pour chaque carte d'image */
-    scroll-snap-align: start;
+    flex: 0 0 100%; /* Force chaque carte à prendre toute la largeur du conteneur de droite (une par une) */
+    scroll-snap-align: center;
     background: white;
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #eee;
-}
-
-.carte-objet:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 .carte-objet img {
     width: 100%;
-    height: 300px;
+    height: 320px;
     object-fit: cover;
     border-radius: 6px;
     margin-bottom: 0.8rem;
@@ -180,6 +170,13 @@ h2 {
     background-color: #555;
 }
 
+#zone-affichage-droite iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 350px;
+    border-radius: 0;
+}
+
 /* --- ADAPTATION MOBILE --- */
 @media (max-width: 800px) {
     .section-grid {
@@ -191,11 +188,11 @@ h2 {
         text-align: center;
     }
 
-    .info-marche {
-        align-items: center;
+    .carrousel-boutons {
+        justify-content: center;
     }
 
-    .carte-objet {
-        flex: 0 0 240px;
+    .info-marche {
+        align-items: center;
     }
 }

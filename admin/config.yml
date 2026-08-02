@@ -1,9 +1,9 @@
 backend:
-  name: github
-  repo: PALTA-TM/luna_dos #  nom repot github
+  name: git-gateway
+  # repo: PALTA-TM/luna_dos #  nom repot github
   branch: main
 
-media_folder: "images" # Où vont se ranger les photos uploadées
+media_folder: "content/images" # Où vont se ranger les photos uploadées
 public_folder: "/images"
 
 collections:

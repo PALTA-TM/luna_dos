@@ -1,6 +1,32 @@
-// --- 1. LECTURE DES DONNÉES (Générées par Decap CMS) ---
+// --- 1. LECTURE DES DONNÉES ---
 
-// A. Charger les Oeuvres
+// A. Charger le Profil
+async function chargerProfil() {
+  try {
+    const response = await fetch('data/profil.json');
+    if (!response.ok) return;
+    const data = await response.json();
+
+    const elNom = document.getElementById("nom-artiste");
+    if (elNom && data.nom_artiste) elNom.textContent = data.nom_artiste;
+
+    const elBio = document.getElementById("bio-artiste");
+    if (elBio && data.bio) elBio.textContent = data.bio;
+
+    const elImage = document.getElementById("image-entete");
+    if (elImage && data.image_en_tete) {
+      let src = data.image_en_tete;
+      if (!src.startsWith("http://") && !src.startsWith("https://")) {
+        src = src.startsWith("/") ? src : "/" + src;
+      }
+      elImage.src = src;
+    }
+  } catch (error) {
+    console.error("Erreur profil:", error);
+  }
+}
+
+// B. Charger les Oeuvres
 fetch("content/oeuvres.json")
   .then((response) => response.json())
   .then((data) => {
@@ -9,11 +35,9 @@ fetch("content/oeuvres.json")
       activerCarrousel();
     }
   })
-  .catch((error) =>
-    console.log("Pas encore d'œuvres ou fichier introuvable", error),
-  );
+  .catch((error) => console.log("Pas d'œuvres trouvées", error));
 
-// B. Charger les Marchés
+// C. Charger les Marchés
 fetch("content/marches.json")
   .then((response) => response.json())
   .then((data) => {
@@ -21,9 +45,12 @@ fetch("content/marches.json")
       afficherMarches(data.marches);
     }
   })
-  .catch((error) =>
-    console.log("Pas encore de marchés ou fichier introuvable", error),
-  );
+  .catch((error) => console.log("Pas de marchés trouvés", error));
+
+// Appeler le profil dès le chargement de la page
+document.addEventListener("DOMContentLoaded", () => {
+  chargerProfil();
+});
 
 // --- 2. FONCTIONS D'AFFICHAGE ---
 
@@ -32,10 +59,8 @@ function afficherOeuvres(oeuvres) {
   galerieContainer.innerHTML = "";
 
   oeuvres.forEach((oeuvre) => {
-    // Corrige le chemin de l'image si c'est une image locale/uploadée
     let srcImage = oeuvre.image;
     if (srcImage && !srcImage.startsWith("http://") && !srcImage.startsWith("https://")) {
-      // S'assure que le chemin commence par un '/'
       srcImage = srcImage.startsWith("/") ? srcImage : "/" + srcImage;
     }
 
@@ -43,7 +68,7 @@ function afficherOeuvres(oeuvres) {
       <div class="carte-objet">
         <img src="${srcImage}" alt="${oeuvre.titre}">
         <h3>${oeuvre.titre}</h3>
-        <p>${oeuvre.prix}</p>
+        <p>${oeuvre.prix} €</p>
       </div>
     `;
   });
@@ -66,13 +91,11 @@ function afficherMarches(marches) {
 
     const bouton = elementListe.querySelector(".bouton-carte");
     bouton.addEventListener("click", () => {
-      const adresseEncodee = encodeURIComponent(
-        `${marche.lieu}, ${marche.ville}`,
-      );
+      const adresseEncodee = encodeURIComponent(`${marche.lieu}, ${marche.ville}`);
       zoneDroite.innerHTML = `
         <iframe 
           width="100%" height="100%" 
-          style="border:0; min-height: 400px; border-radius: 8px;" 
+          style="border:0; min-height: 350px; border-radius: 8px;" 
           loading="lazy"
           src="https://maps.google.com/maps?q=${adresseEncodee}&output=embed">
         </iframe>
@@ -88,18 +111,12 @@ function activerCarrousel() {
   const btnNext = document.getElementById("btn-next");
   const galerieContainer = document.getElementById("galerie-liste");
 
-  if (btnNext && btnPrev) {
+  if (btnNext && btnPrev && galerieContainer) {
     btnNext.addEventListener("click", () => {
-      galerieContainer.scrollBy({
-        left: galerieContainer.offsetWidth,
-        behavior: "smooth",
-      });
+      galerieContainer.scrollBy({ left: 300, behavior: "smooth" });
     });
     btnPrev.addEventListener("click", () => {
-      galerieContainer.scrollBy({
-        left: -galerieContainer.offsetWidth,
-        behavior: "smooth",
-      });
+      galerieContainer.scrollBy({ left: -300, behavior: "smooth" });
     });
   }
 }

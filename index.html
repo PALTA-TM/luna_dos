@@ -5,43 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio Artiste</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Script Decap CMS (Identity) -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
-<body>
+<body class="bg-clair">
 
   <!-- EN-TÊTE / BANNIÈRE DE L'ARTISTE -->
-  <header class="entete-artiste">
-    <div class="conteneur-entete">
-      <img id="image-entete" src="images/banniere.jpg" alt="Photo de l'artiste ou bannière">
-      <h1 id="nom-artiste">Nom de l'artiste</h1>
-      <p id="bio-artiste">Chargement de la présentation...</p>
+  <header class="section-grid bg-sombre">
+    <div class="text-container">
+      <h1 id="nom-artiste">Luna</h1>
+      <p id="bio-artiste" class="subtitle">Chargement de la présentation...</p>
+    </div>
+    <div class="image-container">
+      <img id="image-entete" src="images/luna.png" alt="Photo de l'artiste">
     </div>
   </header>
 
-  <!-- SECTION GALERIE / MES CRÉATIONS -->
   <main>
-    <section class="section-galerie">
+    <!-- SECTION GALERIE / MES CRÉATIONS -->
+    <section class="section-full">
       <h2>Mes Créations</h2>
-      <div class="carrousel-conteneur">
-        <button id="btn-prev" class="btn-carrousel">❮</button>
-        <div id="galerie-liste" class="galerie-grille">
+      <div class="carrousel-wrapper">
+        <div id="galerie-liste" class="galerie-container">
           <!-- Les œuvres seront injectées ici par script.js -->
         </div>
-        <button id="btn-next" class="btn-carrousel">❯</button>
+        <div class="carrousel-boutons">
+          <button id="btn-prev">❮ Précédent</button>
+          <button id="btn-next">Suivant ❯</button>
+        </div>
       </div>
     </section>
 
     <!-- SECTION MARCHÉS & EXPOSITIONS -->
-    <section class="section-marches">
-      <h2>Mes Marchés & Expositions</h2>
-      <div class="marches-conteneur">
-        <ul id="marches-liste">
-          <!-- La liste des marchés sera injectée ici par script.js -->
+    <section class="section-grid bg-sombre reverse-mobile">
+      <div class="text-container">
+        <h2>Mes Marchés & Expositions</h2>
+        <ul id="marches-liste" class="agenda-liste">
+          <!-- La liste des marchés sera injectée par script.js -->
         </ul>
-        <div id="zone-affichage-droite" class="carte-fictive">
-          <p>Cliquez sur "Voir sur la carte" pour afficher la localisation.</p>
-        </div>
+      </div>
+      <div id="zone-affichage-droite" class="image-container">
+        <!-- Carte Google Maps dynamique -->
       </div>
     </section>
   </main>

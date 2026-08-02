@@ -3,7 +3,8 @@
 // A. Charger le Profil
 async function chargerProfil() {
   try {
-    const response = await fetch('data/profil.json');
+    // Le ?t= Date.now() force le navigateur à télécharger la vraie version fraîche et à ne pas utiliser le cache
+    const response = await fetch('data/profil.json?t=' + Date.now());
     if (!response.ok) return;
     const data = await response.json();
 

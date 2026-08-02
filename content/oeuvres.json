@@ -9,6 +9,11 @@
       "titre": "segunda foto",
       "prix": "10",
       "image": "/images/unnamed.jpg"
+    },
+    {
+      "titre": "Test image smartphone ",
+      "prix": "3",
+      "image": "/images/1000002081.jpg"
     }
   ]
 }

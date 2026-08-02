@@ -1,72 +1,51 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Artiste</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Artiste</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Script Decap CMS (Identity) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
-
 <body>
 
-    <!-- 1. EN-TÊTE : Image à gauche, Texte à droite -->
-    <header class="section-grid bg-clair">
-        <div class="image-container">
-            <img src="https://picsum.photos/seed/artist/800/800" alt="Portrait de l'artiste">
-        </div>
-        <div class="text-container">
-            <h1>LUNA JARA</h1>
-            <p class="subtitle">Artisane & Musicienne</p>
-            <p>Bienvenue dans mon univers. Je crée des objets uniques à la main et je compose de la musique pour
-                accompagner mes expositions.</p>
-        </div>
-    </header>
+  <!-- EN-TÊTE / BANNIÈRE DE L'ARTISTE -->
+  <header class="entete-artiste">
+    <div class="conteneur-entete">
+      <img id="image-entete" src="images/banniere.jpg" alt="Photo de l'artiste ou bannière">
+      <h1 id="nom-artiste">Nom de l'artiste</h1>
+      <p id="bio-artiste">Chargement de la présentation...</p>
+    </div>
+  </header>
 
-    <!-- 2. SECTION MUSIQUE : Pleine largeur -->
-    <section class="section-full bg-sombre">
-        <h2>Ma Musique</h2>
-        <p>Écoutez mes dernières compositions.</p>
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M"
-            width="100%" height="152" frameborder="0"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  <!-- SECTION GALERIE / MES CRÉATIONS -->
+  <main>
+    <section class="section-galerie">
+      <h2>Mes Créations</h2>
+      <div class="carrousel-conteneur">
+        <button id="btn-prev" class="btn-carrousel">❮</button>
+        <div id="galerie-liste" class="galerie-grille">
+          <!-- Les œuvres seront injectées ici par script.js -->
+        </div>
+        <button id="btn-next" class="btn-carrousel">❯</button>
+      </div>
     </section>
 
-    <!-- 3. SECTION GALERIE : Carrousel -->
-    <section class="section-grid bg-clair">
-        <div class="text-container">
-            <h2>Mes Créations</h2>
-            <p>Chaque pièce est unique, façonnée à la main dans mon atelier.</p>
-
-            <div class="carrousel-boutons">
-                <button id="btn-prev">⬅️ Précédent</button>
-                <button id="btn-next">Suivant ➡️</button>
-            </div>
+    <!-- SECTION MARCHÉS & EXPOSITIONS -->
+    <section class="section-marches">
+      <h2>Mes Marchés & Expositions</h2>
+      <div class="marches-conteneur">
+        <ul id="marches-liste">
+          <!-- La liste des marchés sera injectée ici par script.js -->
+        </ul>
+        <div id="zone-affichage-droite" class="carte-fictive">
+          <p>Cliquez sur "Voir sur la carte" pour afficher la localisation.</p>
         </div>
-
-        <div class="galerie-container" id="galerie-liste">
-            <!-- Injecté par JavaScript -->
-        </div>
+      </div>
     </section>
+  </main>
 
-    <!-- 4. SECTION MARCHÉS : Agenda à gauche, Carte à droite -->
-    <section class="section-grid bg-sombre reverse-mobile">
-        <div class="text-container">
-            <h2>Où me trouver ?</h2>
-            <ul class="agenda-liste" id="marches-liste">
-                <!-- Injecté par JavaScript -->
-            </ul>
-        </div>
-
-        <div class="image-container" id="zone-affichage-droite">
-            <img src="https://picsum.photos/seed/market/800/800" alt="Stand sur le marché">
-        </div>
-    </section>
-
-    <!-- PapaParse pour lire Google Sheets -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-    <!-- Votre script principal -->
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
-
 </html>

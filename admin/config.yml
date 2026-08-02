@@ -1,0 +1,35 @@
+backend:
+  name: github
+  repo: PALTA-TM/luna_dos #  nom repot github
+  branch: main
+
+media_folder: "images" # Où vont se ranger les photos uploadées
+public_folder: "/images"
+
+collections:
+  - name: "site"
+    label: "Contenu du Site"
+    files:
+      - file: "content/oeuvres.json"
+        label: "Mes Créations (Galerie)"
+        name: "oeuvres"
+        fields:
+          - label: "Liste des œuvres"
+            name: "oeuvres"
+            widget: "list"
+            fields:
+              - {label: "Titre de l'œuvre", name: "titre", widget: "string"}
+              - {label: "Prix", name: "prix", widget: "string"}
+              - {label: "Photo", name: "image", widget: "image"}
+
+      - file: "content/marches.json"
+        label: "Mes Marchés / Expositions"
+        name: "marches"
+        fields:
+          - label: "Liste des marchés"
+            name: "marches"
+            widget: "list"
+            fields:
+              - {label: "Date", name: "date", widget: "string"}
+              - {label: "Ville", name: "ville", widget: "string"}
+              - {label: "Lieu exact", name: "lieu", widget: "string"}

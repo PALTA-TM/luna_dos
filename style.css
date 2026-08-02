@@ -1,0 +1,211 @@
+/* --- PARAMÈTRES DE BASE --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    color: #333;
+    line-height: 1.6;
+}
+
+.bg-clair {
+    background-color: #FAFAFA;
+}
+
+.bg-sombre {
+    background-color: #EFEFEF;
+    color: #222;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+/* --- GRILLES PRINCIPALES (Ordinateur) --- */
+.section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 60vh;
+}
+
+.section-full {
+    padding: 4rem 10%;
+    text-align: center;
+}
+
+/* --- CONTENEURS INTERNES --- */
+.text-container {
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.image-container {
+    width: 100%;
+    height: 100%;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* --- CARROUSSEL D'OBJETS --- */
+.galerie-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 1.5rem;
+    padding: 2rem;
+    scrollbar-width: none;
+}
+
+.galerie-container::-webkit-scrollbar {
+    display: none;
+}
+
+.carte-objet {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.carte-objet:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.carte-objet img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* --- BOUTONS DU CARROUSSEL --- */
+.carrousel-boutons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.carrousel-boutons button {
+    background-color: #222;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.carrousel-boutons button:hover {
+    background-color: #555;
+}
+
+/* --- LISTE DES MARCHÉS --- */
+.agenda-liste {
+    list-style: none;
+    margin-top: 2rem;
+}
+
+.agenda-liste li {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #ccc;
+    font-size: 1.1rem;
+}
+
+.agenda-liste strong {
+    color: #d35400;
+    display: block;
+}
+
+/* --- BOUTON GOOGLE MAPS --- */
+.info-marche {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.bouton-carte {
+    background-color: #222;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.bouton-carte:hover {
+    background-color: #555;
+}
+
+#zone-affichage-droite iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+/* --- ADAPTATION MOBILE (Écrans < 800px) --- */
+@media (max-width: 800px) {
+    .section-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .text-container {
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .carrousel-boutons {
+        justify-content: center;
+    }
+
+    .galerie-container {
+        padding: 1rem;
+    }
+
+    .carte-objet img {
+        height: 250px;
+    }
+
+    .reverse-mobile .text-container {
+        order: 1;
+    }
+
+    .reverse-mobile .image-container {
+        order: 2;
+    }
+}

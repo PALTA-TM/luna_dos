@@ -32,9 +32,16 @@ function afficherOeuvres(oeuvres) {
   galerieContainer.innerHTML = "";
 
   oeuvres.forEach((oeuvre) => {
+    // Corrige le chemin de l'image si c'est une image locale/uploadée
+    let srcImage = oeuvre.image;
+    if (srcImage && !srcImage.startsWith("http://") && !srcImage.startsWith("https://")) {
+      // S'assure que le chemin commence par un '/'
+      srcImage = srcImage.startsWith("/") ? srcImage : "/" + srcImage;
+    }
+
     galerieContainer.innerHTML += `
       <div class="carte-objet">
-        <img src="${oeuvre.image}" alt="${oeuvre.titre}">
+        <img src="${srcImage}" alt="${oeuvre.titre}">
         <h3>${oeuvre.titre}</h3>
         <p>${oeuvre.prix}</p>
       </div>

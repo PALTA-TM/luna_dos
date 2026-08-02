@@ -1,0 +1,9 @@
+{
+  "oeuvres": [
+    {
+      "titre": "test",
+      "prix": "56",
+      "image": "https://pixabay.com/fr/photos/papillon-fleur-nature-macro-10370024/"
+    }
+  ]
+}

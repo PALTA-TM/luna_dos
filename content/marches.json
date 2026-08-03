@@ -1,6 +1,11 @@
 {
   "marches": [
     {
+      "date": "11/11/2026",
+      "ville": "Marseille",
+      "lieu": "Mucem"
+    },
+    {
       "date": "20/03/2026",
       "ville": "Nîmes ",
       "lieu": "gare "
@@ -9,11 +14,6 @@
       "date": "03/12/2026",
       "ville": "Santiago",
       "lieu": "Sotero del río ,puente alto "
-    },
-    {
-      "date": "11/11/2026",
-      "ville": "Marseille",
-      "lieu": "Palais Longchamp"
     }
   ]
 }

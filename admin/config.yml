@@ -2,9 +2,7 @@ backend:
   name: github
   repo: PALTA-TM/luna_dos
   branch: main
-  site_domain: luna-dos-2eo.pages.dev
-  base_url: https://decap-cms-oauth.vercel.app
-  auth_endpoint: auth
+  auth_type: pkce
 
 media_folder: "images"
 public_folder: "/images"

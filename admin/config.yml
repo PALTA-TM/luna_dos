@@ -1,6 +1,6 @@
 backend:
-  name: git-gateway
-  # repo: PALTA-TM/luna_dos #  nom repot github
+  name: github
+  repo: PALTA-TM/luna_dos #  nom repot github
   branch: main
 
 media_folder: "images" # Où vont se ranger les photos uploadées
@@ -37,7 +37,7 @@ collections:
   - name: "profil_collection"
     label: "Profil & En-tête"
     files:
-      - file: "data/profil.json"      # Chemin vers votre fichier JSON
+      - file: "data/profil.json"      # Chemin vers le fichier JSON
         name: "profil"
         label: "Informations du Profil"
         fields:

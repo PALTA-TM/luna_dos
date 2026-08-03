@@ -1,11 +1,10 @@
 backend:
   name: github
-  repo: PALTA-TM/luna_dos #  nom repot github
+  repo: PALTA-TM/luna_dos
   branch: main
-  site_domain: palta-tm.github.io/luna_dos
-  base_url: https://decap-cms-oauth.vercel.app
+  auth_type: implicit
 
-media_folder: "images" # Où vont se ranger les photos uploadées
+media_folder: "images"
 public_folder: "/images"
 
 collections:

@@ -7,7 +7,7 @@ backend:
   auth_endpoint: auth
 
 media_folder: "images"
-public_folder: "/images"
+public_folder: "images"
 
 collections:
   - name: "site"
@@ -47,3 +47,6 @@ collections:
           - { label: "Nom ou Titre d'en-tête", name: "nom_artiste", widget: "string" }
           - { label: "Photo d'en-tête / Bannière", name: "image_en_tete", widget: "image" }
           - { label: "Texte de présentation / Bio", name: "bio", widget: "text" }
+          - { label: "Lien Instagram", name: "instagram", widget: "string", required: false }
+          - { label: "Lien Facebook", name: "facebook", widget: "string", required: false }
+          - { label: "Lien TikTok", name: "tiktok", widget: "string", required: false }

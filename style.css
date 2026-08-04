@@ -45,6 +45,64 @@ h2 {
     align-items: center;
 }
 
+/* --- 3. DÉCORATION ET ALIGNEMENT DES RÉSEAUX SOCIAUX --- */
+
+.reseaux-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 1.5rem;
+}
+
+.reseaux-container a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 18px;
+
+
+    /* Couleurs et bordures */
+   color: #222222; 
+  background-color: rgba(0, 0, 0, 0.06); 
+  border: 1px solid rgba(0, 0, 0, 0.15); 
+  border-radius: 25px;
+
+    /* Typographie */
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    /* Animation au survol */
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.reseaux-container a:hover {
+  background-color: #222222;
+  color: #ffffff;
+  border-color: #222222;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Effet au survol des boutons */
+.reseaux-container a:hover {
+    background-color: #ffffff;
+    color: #121212;
+    /* Ajuste selon la couleur sombre de ton thème */
+    border-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Style lors du clic */
+.reseaux-container a:active {
+    transform: translateY(0);
+}
+
+
+
 /* --- CONTENEURS INTERNES --- */
 .text-container {
     padding: 4rem;
@@ -90,7 +148,8 @@ h2 {
 }
 
 .carte-objet {
-    flex: 0 0 100%; /* Force chaque carte à prendre toute la largeur du conteneur de droite (une par une) */
+    flex: 0 0 100%;
+    /* Force chaque carte à prendre toute la largeur du conteneur de droite (une par une) */
     scroll-snap-align: center;
     background: white;
     padding: 1rem;

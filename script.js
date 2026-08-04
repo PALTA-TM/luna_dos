@@ -1,9 +1,8 @@
 // --- 1. LECTURE DES DONNÉES ---
 
-// A. Charger le Profil
+// A. Charger le Profil & les Réseaux Sociaux
 async function chargerProfil() {
   try {
-    // Le ?t= Date.now() force le navigateur à télécharger la vraie version fraîche et à ne pas utiliser le cache
     const response = await fetch('data/profil.json?t=' + Date.now());
     if (!response.ok) return;
     const data = await response.json();
@@ -22,41 +21,63 @@ async function chargerProfil() {
       }
       elImage.src = src;
     }
+
+    // Gestion des réseaux sociaux
+    const containerReseaux = document.getElementById("reseaux-sociaux");
+    if (containerReseaux) {
+      containerReseaux.innerHTML = "";
+      if (data.instagram) {
+        containerReseaux.innerHTML += `<a href="${data.instagram}" target="_blank" rel="noopener">Instagram</a>`;
+      }
+      if (data.facebook) {
+        containerReseaux.innerHTML += `<a href="${data.facebook}" target="_blank" rel="noopener">Facebook</a>`;
+      }
+      if (data.tiktok) {
+        containerReseaux.innerHTML += `<a href="${data.tiktok}" target="_blank" rel="noopener">TikTok</a>`;
+      }
+    }
   } catch (error) {
     console.error("Erreur profil:", error);
   }
 }
 
 // B. Charger les Oeuvres
-fetch("content/oeuvres.json")
-  .then((response) => response.json())
-  .then((data) => {
-    if (data && data.oeuvres) {
-      afficherOeuvres(data.oeuvres);
-      activerCarrousel();
-    }
-  })
-  .catch((error) => console.log("Pas d'œuvres trouvées", error));
+function chargerOeuvres() {
+  fetch("content/oeuvres.json?t=" + Date.now())
+    .then((response) => response.json())
+    .then((data) => {
+      if (data && data.oeuvres) {
+        afficherOeuvres(data.oeuvres);
+        activerCarrousel();
+      }
+    })
+    .catch((error) => console.log("Pas d'œuvres trouvées", error));
+}
 
 // C. Charger les Marchés
-fetch("content/marches.json")
-  .then((response) => response.json())
-  .then((data) => {
-    if (data && data.marches) {
-      afficherMarches(data.marches);
-    }
-  })
-  .catch((error) => console.log("Pas de marchés trouvés", error));
+function chargerMarches() {
+  fetch("content/marches.json?t=" + Date.now())
+    .then((response) => response.json())
+    .then((data) => {
+      if (data && data.marches) {
+        afficherMarches(data.marches);
+      }
+    })
+    .catch((error) => console.log("Pas de marchés trouvés", error));
+}
 
-// Appeler le profil dès le chargement de la page
+// Lancement sécurisé une fois la page totalement chargée
 document.addEventListener("DOMContentLoaded", () => {
   chargerProfil();
+  chargerOeuvres();
+  chargerMarches();
 });
 
 // --- 2. FONCTIONS D'AFFICHAGE ---
 
 function afficherOeuvres(oeuvres) {
   const galerieContainer = document.getElementById("galerie-liste");
+  if (!galerieContainer) return; // Sécurité anti-crash
   galerieContainer.innerHTML = "";
 
   oeuvres.forEach((oeuvre) => {
@@ -78,6 +99,7 @@ function afficherOeuvres(oeuvres) {
 function afficherMarches(marches) {
   const marchesContainer = document.getElementById("marches-liste");
   const zoneDroite = document.getElementById("zone-affichage-droite");
+  if (!marchesContainer) return; // Sécurité anti-crash
   marchesContainer.innerHTML = "";
 
   marches.forEach((marche) => {
@@ -91,17 +113,19 @@ function afficherMarches(marches) {
     `;
 
     const bouton = elementListe.querySelector(".bouton-carte");
-    bouton.addEventListener("click", () => {
-      const adresseEncodee = encodeURIComponent(`${marche.lieu}, ${marche.ville}`);
-      zoneDroite.innerHTML = `
-        <iframe 
-          width="100%" height="100%" 
-          style="border:0; min-height: 350px; border-radius: 8px;" 
-          loading="lazy"
-          src="https://maps.google.com/maps?q=${adresseEncodee}&output=embed">
-        </iframe>
-      `;
-    });
+    if (bouton && zoneDroite) {
+      bouton.addEventListener("click", () => {
+        const adresseEncodee = encodeURIComponent(`${marche.lieu}, ${marche.ville}`);
+        zoneDroite.innerHTML = `
+          <iframe 
+            width="100%" height="100%" 
+            style="border:0; min-height: 350px; border-radius: 8px;" 
+            loading="lazy"
+            src="https://maps.google.com/maps?q=${adresseEncodee}&output=embed">
+          </iframe>
+        `;
+      });
+    }
 
     marchesContainer.appendChild(elementListe);
   });
@@ -113,11 +137,7 @@ function activerCarrousel() {
   const galerieContainer = document.getElementById("galerie-liste");
 
   if (btnNext && btnPrev && galerieContainer) {
-    btnNext.addEventListener("click", () => {
-      galerieContainer.scrollBy({ left: 300, behavior: "smooth" });
-    });
-    btnPrev.addEventListener("click", () => {
-      galerieContainer.scrollBy({ left: -300, behavior: "smooth" });
-    });
+    btnNext.onclick = () => galerieContainer.scrollBy({ left: 300, behavior: "smooth" });
+    btnPrev.onclick = () => galerieContainer.scrollBy({ left: -300, behavior: "smooth" });
   }
 }
